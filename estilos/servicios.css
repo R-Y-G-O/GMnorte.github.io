@@ -5,7 +5,10 @@ body {
     background-image: url('t.webp'); 
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 
 .container {
     width: 70%;

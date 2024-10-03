@@ -12,12 +12,9 @@
     <link rel="icon" href="img/logo/favicon.ico" type="image/x-icon">
 </head>
 <body>
-
     <div id="navbar-container"></div>
-
     <div class="container">
         <div class="flex-container">
-            <!-- Formulario de contacto -->
             <div class="contact-form">
                 <h2>Envíanos un mensaje</h2>
                 <form id="contact-form">
@@ -41,13 +38,12 @@
                         <i class="fas fa-comment"></i>
                         <textarea name="message" placeholder="Tu mensaje" rows="5" required></textarea>
                     </div>
-                    <!-- Campo oculto para honeypot -->
                     <input type="text" name="honeypot" style="display:none;">
                     <button type="submit">Enviar</button>
                 </form>
             </div>
 
-            <!-- Preguntas Frecuentes (FAQs) -->
+
             <div class="faq">
                 <h2>Preguntas Frecuentes</h2>
                 <h3><i class="fas fa-headset"></i> ¿Cómo puedo contactarme con atención al cliente?</h3>
@@ -65,7 +61,6 @@
             </div>
         </div>
 
-        <!-- Mapa interactivo -->
         <div class="map">
             <h2><i class="fas fa-map"></i> Encuéntranos aquí</h2>
             <iframe 
@@ -88,52 +83,46 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init('Y28WmP_fwZjZfdkmX'); // Reemplaza 'user_tu_usuario' con tu User ID de EmailJS
+            emailjs.init('Y28WmP_fwZjZfdkmX');
         })();
 
         document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita el envío normal del formulario
+            event.preventDefault(); 
 
-            // Verifica si el campo honeypot está vacío
             if (this.honeypot.value) {
                 alert('Error: Bot detectado.');
-                return; // Si el campo no está vacío, no envía el formulario
+                return;
             }
 
-            // Lógica para limitar envíos
-            const maxSubmissions = 5; // Número máximo de envíos permitidos
-            const timeLimit = 60 * 1000; // Tiempo límite en milisegundos (1 minuto)
+            const maxSubmissions = 5; 
+            const timeLimit = 60 * 1000; 
             const currentTime = Date.now();
 
             let submissionCount = localStorage.getItem('submissionCount') || 0;
             let firstSubmissionTime = localStorage.getItem('firstSubmissionTime');
 
-            // Si el tiempo límite ha pasado, reinicia el conteo
             if (firstSubmissionTime && currentTime - firstSubmissionTime > timeLimit) {
                 submissionCount = 0;
                 localStorage.setItem('submissionCount', submissionCount);
                 localStorage.removeItem('firstSubmissionTime');
             }
 
-            // Verifica si se supera el límite de envíos
             if (submissionCount >= maxSubmissions) {
                 alert('Has alcanzado el límite de envíos. Por favor, inténtalo de nuevo más tarde.');
-                return; // No envía el formulario
+                return;
             }
 
-            // Incrementa el conteo de envíos
             submissionCount++;
             localStorage.setItem('submissionCount', submissionCount);
 
-            // Guarda la hora del primer envío
             if (!firstSubmissionTime) {
                 localStorage.setItem('firstSubmissionTime', currentTime);
             }
 
-            emailjs.sendForm('service_syq9sgg', 'template_84c5f58', this) // Reemplaza con tu Service ID y Template ID
+            emailjs.sendForm('service_syq9sgg', 'template_84c5f58', this)
                 .then(function() {
                     alert('¡Mensaje enviado correctamente!');
-                    document.getElementById('contact-form').reset(); // Reinicia el formulario
+                    document.getElementById('contact-form').reset(); 
                 }, function(error) {
                     alert('Error al enviar el mensaje: ' + JSON.stringify(error));
                 });
@@ -141,24 +130,18 @@
     </script>
 
     <script>
-        // Interactividad para las preguntas frecuentes (FAQs)
         document.querySelectorAll('.faq h3').forEach(item => {
             item.addEventListener('click', () => {
                 const content = item.nextElementSibling;
-
-                // Cierra otras preguntas si están abiertas
                 document.querySelectorAll('.faq p').forEach(p => {
                     if (p !== content) {
-                        p.classList.remove('show'); // Cierra la respuesta
+                        p.classList.remove('show'); 
                     }
                 });
-
-                // Alterna la visibilidad de la pregunta actual
                 content.classList.toggle('show');
             });
         });
     </script>
-
     <script src="js/navbar.js"></script>
     <script src="js/scroll.js" defer></script>
 
