@@ -123,9 +123,9 @@ const pieHTML = `
                     <h4>Contacto</h4>
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i>Avenida Vice N°282- Urb. Santa Ana - Piura</li>
-                        <li><i class="fas fa-phone-alt"></i>981092552 / 073-613737</li>
+                        <li><i class="fas fa-phone-alt"></i> 981092552 / 073-613737</li>
                         <li><i class="fas fa-envelope"></i> administracion@gmnorte.com
-                          proyectos@gmnorte.com</li>
+                        <li><i class="fas fa-envelope"></i> proyectos@gmnorte.com</li>
                     </ul>
                 </div>
                 <div class="footer-column">
