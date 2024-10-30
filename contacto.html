@@ -83,7 +83,8 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init('Y28WmP_fwZjZfdkmX');
+                //API key de emailjs
+            emailjs.init('');
         })();
 
         document.getElementById('contact-form').addEventListener('submit', function(event) {
@@ -119,7 +120,8 @@
                 localStorage.setItem('firstSubmissionTime', currentTime);
             }
 
-            emailjs.sendForm('service_syq9sgg', 'template_84c5f58', this)
+            //service id y templare id de emailjs
+            emailjs.sendForm('', '', this)
                 .then(function() {
                     alert('¡Mensaje enviado correctamente!');
                     document.getElementById('contact-form').reset(); 
